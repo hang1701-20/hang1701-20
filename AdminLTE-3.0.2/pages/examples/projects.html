@@ -239,11 +239,6 @@
     <section class="content">
 
 
-
-
-
-
-
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
@@ -269,7 +264,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Images</th>
                 <th scope="col">CreateAt</th>
-                <th scope="col">Action</th>
+                <th scope="col">priec</th>
+                <th scope="col">sale</th>
               </tr>
             </thead>
             <tbody id="tr">
@@ -317,9 +313,9 @@
     let dataGetAll = await axios.get(`${api}/product`);
     let x ='';
     dataGetAll.data.forEach(el =>{
-      
       x+= `<tr>
       <td>${el.id}</td> <td>${el.name}</td> <td><img width="100px" height="100px" src="${el.avatar}" /></td> <td>${el.createdAt}</td>
+      <td>${el.price}</td> <td>${el.sale}</td>
       <td>
         <button onclick = "finOne(${el.id})">Sua</button>
         <button onclick = "deleteData(${el.id})">Xoa</button>
