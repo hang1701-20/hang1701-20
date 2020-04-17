@@ -380,7 +380,8 @@
 					<div class="features_items">
 						<!--features_items-->
 						<h2 class="title text-center">SẢN PHẨM MỚI NHẤT</h2>
-						<div class="col-sm-4" id="tr">
+						
+						<div class="col-sm-12" id="tr">
 							
 						</div>
 
@@ -1011,7 +1012,7 @@
 			let dataGetAll = await axios.get(`${api}/product`);
 			let x = '';
 			dataGetAll.data.forEach(el => {
-				x += `<div class="product-image-wrapper">
+				x += `<div class="product-image-wrapper col-md-4">
 								<div class="single-products">
 										<div class="productinfo text-center">
 											<img  src="${el.avatar}" alt="" />
@@ -1023,7 +1024,7 @@
 											<div class="overlay-content">
 												<h2>${el.price}-${el.sale}</h2>
 												<p>${el.detail}</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<a onclick="findOne(${el.id})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>
@@ -1031,14 +1032,13 @@
 				trTable.innerHTML = x;
 			})
 		}
-		let deleteData = async id => {
-			let deleteDataById = await axios.delete(`${api}/product/${id}`);
-			window.location.reload();
-		}
-		let finOne = async id => {
+		let arr_data_cart = [];
+		let findOne = async id => {
 			let data = await axios.get(`${api}/product/${id}`);
-			localStorage.setItem('id', id);
-			window.location.href = './project_edit.html';
+			arr_data_cart.push(id);
+			const uniqueSet = new Set(arr_data_cart);
+			const backToArray = [...uniqueSet];
+			localStorage.setItem('id_cart', JSON.stringify(backToArray));
 		}
 		getAll();
 	</script>
